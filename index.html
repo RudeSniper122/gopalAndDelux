@@ -58,7 +58,7 @@
         var subtotalDecimals = basic + gst + vat
         var subtotal = Number(subtotalDecimals.toFixed(2))
         var bpriceDecimals = subtotal/totalQty
-        var bprice = Number(bpriceDecimals.toFixed(2))
+        var bprice = Number(bpriceDecimals.toFixed(4))
 
         document.getElementById("mrpDis").innerHTML = "MRP : " + mrp;
         document.getElementById("totalQtyDis").innerHTML = "Total Qty in Case : " + totalQty;

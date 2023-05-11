@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="index.css">
+    <title>Calculator App</title>
+  </head>
+  <body>
+
+    <div class="app">
+      <div class="mrpDiv">
+        <input
+          id="mrp"
+          type="number"
+          placeholder="Enter MRP"
+          >
+        <input
+          id="totalQty"
+          type="number"
+          placeholder="Enter Total Qty in Case"
+          >
+        <input
+          id="basicPrice"
+          type="number"
+          placeholder="Enter Basic Price"
+          >
+        <button type="button" onclick="getInputValues()">Calculate</button>
+        <button type="button" onclick="reset()">Reset</button>
+      </div>
+
+      <div class="result">
+        <span id="mrpDis"></span>
+        <span id="totalQtyDis"></span>
+        <span id="basicPriceDis"></span>
+        <span id="totalPriceDis"></span>
+        <span id="gstDis"></span>
+        <span id="vatDis"></span>
+
+
+        <span id="subTotalDis"></span>
+        <span id="BPriceDis"></span>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function getInputValues(){
+        var mrp = document.getElementById("mrp").value;
+        var totalQty = document.getElementById("totalQty").value;
+        var basicPrice = document.getElementById("basicPrice").value;
+        var basic = Number(basicPrice)
+
+        var totalPrice = mrp * totalQty
+        var gstDecimals = totalPrice * (56/100)
+        var gst = Number(gstDecimals.toFixed(2))
+        var vatDecimals = basicPrice * (28/100)
+        var vat = Number(vatDecimals.toFixed(2))
+
+        var subtotalDecimals = basic + gst + vat
+        var subtotal = Number(subtotalDecimals.toFixed(2))
+        var bpriceDecimals = subtotal/totalQty
+        var bprice = Number(bpriceDecimals.toFixed(2))
+
+        document.getElementById("mrpDis").innerHTML = "MRP : " + mrp;
+        document.getElementById("totalQtyDis").innerHTML = "Total Qty in Case : " + totalQty;
+        document.getElementById("basicPriceDis").innerHTML = "Basic Price : " + basic;
+
+        // document.getElementById("totalPriceDis").innerHTML = "Total MRP Price of one Case : " + totalPrice;
+        document.getElementById("gstDis").innerHTML = "GST : " + gst;
+        document.getElementById("vatDis").innerHTML = "VAT : " + vat;
+
+        document.getElementById("subTotalDis").innerHTML = "Subtotal : " + subtotal;
+        document.getElementById("BPriceDis").innerHTML = "BPrice per Piece : " + bprice;
+      }
+
+      function reset(){
+        document.getElementById("mrp").value = null
+        document.getElementById("totalQty").value = null
+        document.getElementById("basicPrice").value = null
+        document.getElementById("mrpDis").innerHTML = null;
+        document.getElementById("basicPriceDis").innerHTML = null;
+        document.getElementById("totalQtyDis").innerHTML = null;
+        document.getElementById("totalPriceDis").innerHTML = null;
+        document.getElementById("gstDis").innerHTML = null;
+        document.getElementById("vatDis").innerHTML = null;
+
+        document.getElementById("subTotalDis").innerHTML = null;
+        document.getElementById("BPriceDis").innerHTML = null;
+      }
+    </script>
+  </body>
+</html>
